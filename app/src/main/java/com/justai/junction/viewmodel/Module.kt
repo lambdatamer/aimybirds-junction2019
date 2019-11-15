@@ -6,4 +6,5 @@ import org.kodein.di.generic.bind
 
 val viewModelModule = Kodein.Module("ViewModel") {
     bind() from viewModel<RadarViewModel>()
+    bind() from viewModel<QuestViewModel>()
 }

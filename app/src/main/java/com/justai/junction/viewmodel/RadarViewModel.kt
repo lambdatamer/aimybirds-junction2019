@@ -47,7 +47,7 @@ class RadarViewModel(application: Application) : KViewModel(application) {
             //Using BALANCED for best performance/battery ratio
             .scanMode(ScanMode.LOW_LATENCY)
             //OnDeviceUpdate callback will be received with 5 seconds interval
-            .deviceUpdateCallbackInterval(TimeUnit.SECONDS.toMillis(1))
+            .deviceUpdateCallbackInterval(300)
 
 
         proximityManager.setIBeaconListener(object : IBeaconListener {
@@ -70,32 +70,32 @@ class RadarViewModel(application: Application) : KViewModel(application) {
                 distance.postValue(iBeacon?.distance)
             }
         })
-        proximityManager.setEddystoneListener(object : EddystoneListener {
-            override fun onEddystonesUpdated(
-                eddystones: MutableList<IEddystoneDevice>,
-                namespace: IEddystoneNamespace?
-            ) {
-                eddystones.find { it.instanceId == beaconId.value }?.let(::updateState)
-            }
-
-            override fun onEddystoneDiscovered(
-                eddystone: IEddystoneDevice,
-                namespace: IEddystoneNamespace?
-            ) {
-                if (eddystone.instanceId == beaconId.value) updateState(eddystone)
-            }
-
-            override fun onEddystoneLost(
-                eddystone: IEddystoneDevice,
-                namespace: IEddystoneNamespace?
-            ) {
-                if (eddystone.instanceId == beaconId.value) updateState(eddystone)
-            }
-
-            fun updateState(eddyStone: IEddystoneDevice?) {
-                distance.postValue(eddyStone?.distance)
-            }
-        })
+//        proximityManager.setEddystoneListener(object : EddystoneListener {
+//            override fun onEddystonesUpdated(
+//                eddystones: MutableList<IEddystoneDevice>,
+//                namespace: IEddystoneNamespace?
+//            ) {
+//                eddystones.find { it.instanceId == beaconId.value }?.let(::updateState)
+//            }
+//
+//            override fun onEddystoneDiscovered(
+//                eddystone: IEddystoneDevice,
+//                namespace: IEddystoneNamespace?
+//            ) {
+//                if (eddystone.instanceId == beaconId.value) updateState(eddystone)
+//            }
+//
+//            override fun onEddystoneLost(
+//                eddystone: IEddystoneDevice,
+//                namespace: IEddystoneNamespace?
+//            ) {
+//                if (eddystone.instanceId == beaconId.value) updateState(eddystone)
+//            }
+//
+//            fun updateState(eddyStone: IEddystoneDevice?) {
+//                distance.postValue(eddyStone?.distance)
+//            }
+//        })
     }
 
 }
