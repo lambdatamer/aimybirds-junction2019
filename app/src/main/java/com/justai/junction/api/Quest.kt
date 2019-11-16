@@ -7,5 +7,6 @@ data class Quest (
     @SerializedName("image") val imageUrl: String,
     @SerializedName("background") val backgroundColor: String,
     val name: String,
-    val mission: String
+    val mission: String,
+    val briefing: String
 )

@@ -4,7 +4,7 @@ import com.justai.junction.viewmodel.viewModelModule
 import me.lambdatamer.kandroid.KApplication
 import org.kodein.di.Kodein
 
-class JunkPileApp :  KApplication() {
+class Aimybirds :  KApplication() {
     override val rootModule = Kodein.Module("Root") {
         import(viewModelModule)
     }
