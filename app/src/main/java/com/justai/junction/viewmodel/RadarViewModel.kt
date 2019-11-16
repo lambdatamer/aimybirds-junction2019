@@ -40,6 +40,11 @@ class RadarViewModel(application: Application) : KViewModel(application) {
         if (proximityManager.isScanning) proximityManager.stopScanning()
     }
 
+    fun clear() {
+        beaconId.value = null
+        distance.value = null
+    }
+
     private fun configureProximityManager() {
         proximityManager.configuration()
             //Using ranging for continuous scanning or MONITORING for scanning with intervals

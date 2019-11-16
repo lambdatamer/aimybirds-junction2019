@@ -1,4 +1,4 @@
-package com.justai.junction
+package com.justai.junction.ui
 
 import android.content.Context
 import android.media.MediaPlayer
@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.justai.junction.R
 import com.justai.junction.databinding.FragmentRadarBinding
 import com.justai.junction.viewmodel.QuestViewModel
 import com.justai.junction.viewmodel.RadarViewModel
@@ -91,7 +92,11 @@ class RadarFragment : KFragment() {
         radarVM.distance.observeNonNull { distance ->
             if (distance > DISTANCE_FOUND) {
                 val delay = getDelayByDistance(distance ?: DISTANCE_MAX)
-                binding.distance.text = distance.toString()
+                binding.distance.text = if (distance < 1.0) {
+                    "~ ${(distance * 100).roundToInt()} cm"
+                } else {
+                    "~ ${distance.roundToInt()} m"
+                }
                 L.d("Distance: $distance, delay: $delay")
                 currentDelay = delay
             } else {
@@ -99,6 +104,11 @@ class RadarFragment : KFragment() {
                 questVM.nextQuestOrStage()
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        radarVM.clear()
     }
 
     private fun getDelayByDistance(distance: Double): Long {

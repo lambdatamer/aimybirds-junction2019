@@ -3,15 +3,11 @@
 
     <data>
 
-        <variable
-            name="url"
-            type="String" />
     </data>
 
     <ImageView
         android:id="@+id/image"
-        loadImageUrl="@{url}"
-        android:layout_margin="32dp"
+        android:padding="32dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
         android:layout_width="match_parent"

@@ -56,6 +56,11 @@ android {
     }
 }
 
+repositories {
+    mavenLocal()
+    maven("https://dl.bintray.com/aimybox/aimybox-android-sdk/")
+}
+
 dependencies {
     implementation(project(":KAndroid"))
 
@@ -81,6 +86,9 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.9.0")
     kapt("com.github.bumptech.glide:compiler:4.9.0")
+
+    implementation("com.justai.aimybox:core:0.6.1")
+    implementation("com.justai.aimybox:google-platform-speechkit:0.6.1")
 
     implementation("com.kontaktio:sdk:4.0.3")
 }

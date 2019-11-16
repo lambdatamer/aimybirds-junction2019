@@ -20,6 +20,7 @@
             android:layout_height="match_parent"
             android:background="@color/black_80"
             android:padding="32dp"
+            android:visibility="gone"
             android:scaleType="center" />
 
     </FrameLayout>
